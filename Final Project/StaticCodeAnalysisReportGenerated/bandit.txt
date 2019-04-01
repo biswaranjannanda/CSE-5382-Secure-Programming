@@ -1,0 +1,163 @@
+
+C:\>bandit E:\Secure\app.py
+[main]  INFO    profile include tests: None
+[main]  INFO    profile exclude tests: None
+[main]  INFO    cli include tests: None
+[main]  INFO    cli exclude tests: None
+[main]  INFO    running on Python 3.6.4
+[95mRun started:2018-12-08 22:48:07.883988[0m
+[95m
+Test results:[0m
+[94m>> Issue: [B106:hardcoded_password_funcarg] Possible hardcoded password: 'December123'
+   Severity: Low   Confidence: Medium
+   Location: E:\Secure\app.py:9[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b106_hardcoded_password_funcarg.html
+8
+9       db = mysql.connector.connect(user='root', password='December123', host='127.0.0.1', database='thomaspay')
+10      #db = mysql.connector.connect(user='root', password='root-123', host='thomaspay.clp7fwlohsdk.us-east-2.rds.amazonaws.com', database='thomaspay')
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:29[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+28          print(len(dk))
+29          query = "select count(*) from thomaspay.users where username = '" + str(username) + "' and password = '" + dk + "'"
+30          print (query)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:38[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+37              print (session['user'])
+38              query1 = "select balance from thomaspay.wallet,thomaspay.users " \
+39                       "where thomaspay.users.username='" + session['user'] + "' and thomaspay.users.user_id = thomaspay.wallet.user_id"
+40              print(query1)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:60[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+59              #getting the user_id of beneficiary
+60              query1 = "SELECT user_id from thomaspay.users WHERE user_emailid = '"+str(email)+"'"
+61              print(query1)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:67[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+66              #Getting the user id of current logged in user
+67              query2 ="Select user_id from thomaspay.users WHERE username =  '"+session['user']+"' "
+68              print(query2)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:95[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+94      def addmoney():
+95          query = "SELECT card_name,cardnumber FROM thomaspay.account,thomaspay.users " \
+96                  "where thomaspay.users.username='" + session['user'] + "' and thomaspay.users.user_id = thomaspay.account.user_id"
+97          print(query)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:109[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+108
+109         query = "SELECT card_name,cardnumber FROM thomaspay.account,thomaspay.users " \
+110                 "where thomaspay.users.username='" + session['user'] + "' and thomaspay.users.user_id = thomaspay.account.user_id"
+111         print(query)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:122[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+121             date = now.strftime("%Y-%m-%d")
+122             query0 = "select thomaspay.users.user_id, thomaspay.wallet.balance from thomaspay.wallet, thomaspay.users where thomaspay.users.user_id = thomaspay.wallet.user_id " \
+123                      "and thomaspay.users.username='" + session['user'] + "'"
+124             cursor.execute(query0)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:151[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+150     def homepage():
+151         query1 = "select balance from thomaspay.wallet,thomaspay.users " \
+152                  "where thomaspay.users.username='" + session['user'] + "' and thomaspay.users.user_id = thomaspay.wallet.user_id"
+153         print(query1)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:177[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+176         periodto = request.form['periodto']
+177         query = "SELECT transaction_id,transaction_date,transaction_type,sendto,receivedfrom,amount FROM thomaspay.transactions,thomaspay.users " \
+178                 "where users.username='" + session['user'] + "' and thomaspay.users.user_id = thomaspay.transactions.user_id and transaction_date between '" + str(
+179             periodfrom) + "' and '" + str(periodto) + "'"
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:222[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+221         if x[0] > current[0] or (x[0] == current[0] and (x[1] >= current[1])):
+222             query1 = "select user_id from thomaspay.users where username='" + session[
+223                                      'user']+"'"
+224             print(query1)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:251[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+250     def getBeneficiaries():
+251         query1 = "select beneficiary_id, nickname from thomaspay.beneficiary, thomaspay.users " \
+252                  "where thomaspay.beneficiary.user_id=thomaspay.users.user_id and thomaspay.users.username = '" + session['user'] + "'"
+253         print(query1)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:262[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+261     def getAccounts():
+262         query1 = "select account_id, cardnumber, card_name from thomaspay.account, thomaspay.users " \
+263                  "where thomaspay.account.user_id=thomaspay.users.user_id and thomaspay.users.username = '" + session['user'] + "'"
+264         print(query1)
+
+--------------------------------------------------
+[93m>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: E:\Secure\app.py:284[0m
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+283             return render_template('quickpay.html', message=message, beneficiaries=beneficiaries, accounts=accounts)
+284         query0 = "select thomaspay.users.user_id, thomaspay.wallet.balance from thomaspay.wallet, thomaspay.users where thomaspay.users.user_id = thomaspay.wallet.user_id " \
+285                  "and thomaspay.users.username='" + session['user'] + "'"
+286         cursor.execute(query0)
+
+--------------------------------------------------
+[95m
+Code scanned:[0m
+        Total lines of code: 267
+        Total lines skipped (#nosec): 0
+[95m
+Run metrics:[0m
+        Total issues (by severity):
+                Undefined: 0.0
+                Low: 1.0
+                Medium: 13.0
+                High: 0.0
+        Total issues (by confidence):
+                Undefined: 0.0
+                Low: 13.0
+                Medium: 1.0
+                High: 0.0
+[95mFiles skipped (0):[0m

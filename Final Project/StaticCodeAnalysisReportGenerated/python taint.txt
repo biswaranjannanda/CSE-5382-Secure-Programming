@@ -1,0 +1,287 @@
+C:\>pyt E:\Secure\app.py
+20 vulnerabilities found:
+Vulnerability 1:
+File: E:\Secure\app.py
+ > User input at line 25, source "form[":
+         username = request.form['username']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 29: query = 'select count(*) from thomaspay.users where username = '' + str(username) + '' and password = '' + dk + '''
+File: E:\Secure\app.py
+ > reaches line 31, sink "execute(":
+        ~call_7 = ret_cursor.execute(query)
+
+Vulnerability 2:
+File: E:\Secure\app.py
+ > User input at line 26, source "form[":
+         password = request.form['password']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 27: ~call_1 = ret_hashlib.pbkdf2_hmac('SHA256', password, , 100000)
+        File: E:\Secure\app.py
+         > Line 27: __chain_tmp_2 = ~call_1
+        File: E:\Secure\app.py
+         > Line 27: ~call_2 = ret___chain_tmp_2.encode('base64')
+        File: E:\Secure\app.py
+         > Line 27: __chain_tmp_1 = ~call_2
+        File: E:\Secure\app.py
+         > Line 27: ~call_3 = ret___chain_tmp_1.strip()
+        File: E:\Secure\app.py
+         > Line 27: dk = ~call_3
+        File: E:\Secure\app.py
+         > Line 29: query = 'select count(*) from thomaspay.users where username = '' + str(username) + '' and password = '' + dk + '''
+File: E:\Secure\app.py
+ > reaches line 31, sink "execute(":
+        ~call_7 = ret_cursor.execute(query)
+This vulnerability is unknown due to:  Label: ~call_1 = ret_hashlib.pbkdf2_hmac('SHA256', password, , 100000)
+
+Vulnerability 3:
+File: E:\Secure\app.py
+ > User input at line 57, source "form[":
+         email = request.form['email']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 60: query1 = 'SELECT user_id from thomaspay.users WHERE user_emailid = '' + str(email) + '''
+File: E:\Secure\app.py
+ > reaches line 62, sink "execute(":
+        ~call_2 = ret_cursor.execute(query1)
+
+Vulnerability 4:
+File: E:\Secure\app.py
+ > User input at line 56, source "form[":
+         nickname = request.form['nickname']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 85: val1 = (user_mod, int(bef_userid[0][0]), nickname, email)
+File: E:\Secure\app.py
+ > reaches line 86, sink "execute(":
+        ~call_10 = ret_cursor.execute(query, val1)
+
+Vulnerability 5:
+File: E:\Secure\app.py
+ > User input at line 57, source "form[":
+         email = request.form['email']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 60: query1 = 'SELECT user_id from thomaspay.users WHERE user_emailid = '' + str(email) + '''
+File: E:\Secure\app.py
+ > reaches line 86, sink "execute(":
+        ~call_10 = ret_cursor.execute(query, val1)
+
+Vulnerability 6:
+File: E:\Secure\app.py
+ > User input at line 106, source "form[":
+         money = request.form['money']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 107: ~call_1 = ret_float(money)
+        File: E:\Secure\app.py
+         > Line 107: money1 = ~call_1
+        File: E:\Secure\app.py
+         > Line 131: updatedbalance = money1 + currentbalance
+        File: E:\Secure\app.py
+         > Line 134: val3 = (int(updatedbalance), int(uid))
+File: E:\Secure\app.py
+ > reaches line 135, sink "execute(":
+        ~call_16 = ret_cursor.execute(query2, val3)
+This vulnerability is unknown due to:  Label: ~call_1 = ret_float(money)
+
+Vulnerability 7:
+File: E:\Secure\app.py
+ > User input at line 106, source "form[":
+         money = request.form['money']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 107: ~call_1 = ret_float(money)
+        File: E:\Secure\app.py
+         > Line 107: money1 = ~call_1
+        File: E:\Secure\app.py
+         > Line 131: updatedbalance = money1 + currentbalance
+        File: E:\Secure\app.py
+         > Line 139: val1 = (int(uid), 'Credit', float(money1), date, 'null', 'Wallet Updated')
+File: E:\Secure\app.py
+ > reaches line 140, sink "execute(":
+        ~call_17 = ret_cursor.execute(query1, val1)
+This vulnerability is unknown due to:  Label: ~call_1 = ret_float(money)
+
+Vulnerability 8:
+File: E:\Secure\app.py
+ > User input at line 175, source "form[":
+         periodfrom = request.form['periodfrom']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 177: query = 'SELECT transaction_id,transaction_date,transaction_type,sendto,receivedfrom,amount FROM thomaspay.transactions,thomaspay.users where users.username='' + session['user'] + '' and thomaspay.users.user_id = thomaspay.transactions.user_id and transaction_date between '' + str(periodfrom) + '' and '' + str(periodto) + '''
+File: E:\Secure\app.py
+ > reaches line 180, sink "execute(":
+        ~call_1 = ret_cursor.execute(query)
+
+Vulnerability 9:
+File: E:\Secure\app.py
+ > User input at line 176, source "form[":
+         periodto = request.form['periodto']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 177: query = 'SELECT transaction_id,transaction_date,transaction_type,sendto,receivedfrom,amount FROM thomaspay.transactions,thomaspay.users where users.username='' + session['user'] + '' and thomaspay.users.user_id = thomaspay.transactions.user_id and transaction_date between '' + str(periodfrom) + '' and '' + str(periodto) + '''
+File: E:\Secure\app.py
+ > reaches line 180, sink "execute(":
+        ~call_1 = ret_cursor.execute(query)
+
+Vulnerability 10:
+File: E:\Secure\app.py
+ > User input at line 203, source "form[":
+         ~call_1 = ret_str(request.form['card_type'])
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 203: card_type = ~call_1
+        File: E:\Secure\app.py
+         > Line 231: val = (int(uid[0][0]), card_type, card_number, cvv_number, x[1], x[0])
+File: E:\Secure\app.py
+ > reaches line 233, sink "execute(":
+        ~call_25 = ret_cursor.execute(query, val)
+
+Vulnerability 11:
+File: E:\Secure\app.py
+ > User input at line 204, source "form[":
+         ~call_2 = ret_str(request.form['card_number'])
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 204: card_number = ~call_2
+        File: E:\Secure\app.py
+         > Line 231: val = (int(uid[0][0]), card_type, card_number, cvv_number, x[1], x[0])
+File: E:\Secure\app.py
+ > reaches line 233, sink "execute(":
+        ~call_25 = ret_cursor.execute(query, val)
+
+Vulnerability 12:
+File: E:\Secure\app.py
+ > User input at line 210, source "form[":
+         ~call_5 = ret_str(request.form['cvv_number'])
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 210: cvv_number = ~call_5
+        File: E:\Secure\app.py
+         > Line 231: val = (int(uid[0][0]), card_type, card_number, cvv_number, x[1], x[0])
+File: E:\Secure\app.py
+ > reaches line 233, sink "execute(":
+        ~call_25 = ret_cursor.execute(query, val)
+
+Vulnerability 13:
+File: E:\Secure\app.py
+ > User input at line 216, source "form[":
+         ~call_8 = ret_str(request.form['month'])
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 216: month_year = ~call_8
+        File: E:\Secure\app.py
+         > Line 217: ~call_9 = ret_month_year.split('-')
+        File: E:\Secure\app.py
+         > Line 217: x = ~call_9
+        File: E:\Secure\app.py
+         > Line 231: val = (int(uid[0][0]), card_type, card_number, cvv_number, x[1], x[0])
+File: E:\Secure\app.py
+ > reaches line 233, sink "execute(":
+        ~call_25 = ret_cursor.execute(query, val)
+This vulnerability is unknown due to:  Label: ~call_9 = ret_month_year.split('-')
+
+Vulnerability 14:
+File: E:\Secure\app.py
+ > User input at line 277, source "form[":
+         ~call_13 = ret_str(request.form['beneficiary'])
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 277: beneficiary = ~call_13
+        File: E:\Secure\app.py
+         > Line 296: val11 = (int(beneficiary), int(uid))
+File: E:\Secure\app.py
+ > reaches line 297, sink "execute(":
+        ~call_22 = ret_cursor.execute(query11, val11)
+
+Vulnerability 15:
+File: E:\Secure\app.py
+ > User input at line 278, source "form[":
+         amount = request.form['amount']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 291: ~call_19 = ret_int(amount)
+        File: E:\Secure\app.py
+         > Line 291: amount = ~call_19
+        File: E:\Secure\app.py
+         > Line 302: val1 = (int(uid), 'Debit', float(amount), date, nickname[0][0], 'null')
+File: E:\Secure\app.py
+ > reaches line 304, sink "execute(":
+        ~call_25 = ret_cursor.execute(query1, val1)
+This vulnerability is unknown due to:  Label: ~call_19 = ret_int(amount)
+
+Vulnerability 16:
+File: E:\Secure\app.py
+ > User input at line 277, source "form[":
+         ~call_13 = ret_str(request.form['beneficiary'])
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 277: beneficiary = ~call_13
+        File: E:\Secure\app.py
+         > Line 303: val2 = (beneficiary, 'Credit', float(amount), date, 'null', session['user'])
+File: E:\Secure\app.py
+ > reaches line 305, sink "execute(":
+        ~call_26 = ret_cursor.execute(query1, val2)
+
+Vulnerability 17:
+File: E:\Secure\app.py
+ > User input at line 278, source "form[":
+         amount = request.form['amount']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 291: ~call_19 = ret_int(amount)
+        File: E:\Secure\app.py
+         > Line 291: amount = ~call_19
+        File: E:\Secure\app.py
+         > Line 303: val2 = (beneficiary, 'Credit', float(amount), date, 'null', session['user'])
+File: E:\Secure\app.py
+ > reaches line 305, sink "execute(":
+        ~call_26 = ret_cursor.execute(query1, val2)
+This vulnerability is unknown due to:  Label: ~call_19 = ret_int(amount)
+
+Vulnerability 18:
+File: E:\Secure\app.py
+ > User input at line 278, source "form[":
+         amount = request.form['amount']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 291: ~call_19 = ret_int(amount)
+        File: E:\Secure\app.py
+         > Line 291: amount = ~call_19
+        File: E:\Secure\app.py
+         > Line 307: val3 = (float(amount), int(uid), float(amount))
+File: E:\Secure\app.py
+ > reaches line 308, sink "execute(":
+        ~call_27 = ret_cursor.execute(query2, val3)
+This vulnerability is unknown due to:  Label: ~call_19 = ret_int(amount)
+
+Vulnerability 19:
+File: E:\Secure\app.py
+ > User input at line 277, source "form[":
+         ~call_13 = ret_str(request.form['beneficiary'])
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 277: beneficiary = ~call_13
+        File: E:\Secure\app.py
+         > Line 310: val4 = (float(amount), int(beneficiary), float(amount))
+File: E:\Secure\app.py
+ > reaches line 311, sink "execute(":
+        ~call_28 = ret_cursor.execute(query3, val4)
+
+Vulnerability 20:
+File: E:\Secure\app.py
+ > User input at line 278, source "form[":
+         amount = request.form['amount']
+Reassigned in:
+        File: E:\Secure\app.py
+         > Line 291: ~call_19 = ret_int(amount)
+        File: E:\Secure\app.py
+         > Line 291: amount = ~call_19
+        File: E:\Secure\app.py
+         > Line 310: val4 = (float(amount), int(beneficiary), float(amount))
+File: E:\Secure\app.py
+ > reaches line 311, sink "execute(":
+        ~call_28 = ret_cursor.execute(query3, val4)
+This vulnerability is unknown due to:  Label: ~call_19 = ret_int(amount)

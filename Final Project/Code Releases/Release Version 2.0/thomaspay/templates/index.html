@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		body{
+			height: 1000px;
+			background: #e4f5fc; /* Old browsers */
+			background: -moz-linear-gradient(top, #e4f5fc 0%, #2ab0ed 0%, #bfe8f9 50%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top, #e4f5fc 0%,#2ab0ed 0%,#bfe8f9 50%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom, #e4f5fc 0%,#2ab0ed 0%,#bfe8f9 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		}
+
+	</style>
+	<title>Thomaspay</title>
+	<center>
+		<h1 style="font-size: 4em; font-weight: bold; margin-top: 50px; font-style: italic;">ThomasPay</h1>
+		<p style="margin-left: 350px; margin-top: -30px; font-style: italic;">- pay anytime anywhere</p>
+	</center>
+</head>
+<body>
+	<div style="width: auto; margin-top: 100px;">
+		<center>
+		<form action="/login" method="POST" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td>
+						Username
+					</td>
+					<td>
+						<input type="text" name="username" placeholder="username">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Password
+					</td>
+					<td>
+						<input type="password" name="password" placeholder="password">
+					</td>
+				</tr>
+			</table>
+			<input style="margin-top: 20px; width: auto;" type="submit" value="login"/>
+			<br>
+			<br>
+			<p style="color: red"> {{ message }} </p>
+			<br>
+			<br>
+			<!--<a href="forgotpassword.html">Forgot Password</a>-->
+		</form>
+		</center>
+	</div>
+</body>
+</html>
